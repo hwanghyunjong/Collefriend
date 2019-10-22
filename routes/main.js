@@ -18,9 +18,9 @@ function connectDB() {
 		database = db;
 	});
 };
-
+connectDB();
 router.get('/', (req, res) => {
-    connectDB();
+    
 
     res.sendFile(path.join(__dirname, '../views/mainpage/index.html'));
 });
