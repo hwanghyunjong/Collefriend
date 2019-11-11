@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+  <head>
+  <meta charset="UTF-8">
+  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-analytics.js"></script>
+ </head>
+  <h1>Firebase Test</h1>
+  <p>Firebase console에 데이터가 추가 되었는지 확인하세요</p>
+<script>
+  // Initialize Firebase
+  var firebaseConfig = {
+    apiKey: "AIzaSyBk05Mc1934883sY06pTT20l-zAe2m0InA",
+    authDomain: "collefriends.firebaseapp.com",
+    databaseURL: "https://collefriends.firebaseio.com",
+    projectId: "collefriends",
+    storageBucket: "collefriends.appspot.com",
+    messagingSenderId: "845516350469",
+    appId: "1:845516350469:web:832b984284d3549ce0e86c",
+    measurementId: "G-P5RBZT6326"
+  };
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+   
+  var newPostKey = firebase.database().ref().child('posts').push().key;
+ 
+  var postData = {
+    brdno: newPostKey,
+    brdwriter:"홍길동",
+    brdtitle:"게시판 제목",
+    brdmemo:"게시물 내용",
+    brddate: Date.now()
+  };
+ 
+  var updates = {};
+  updates['/board/' + newPostKey] = postData;
+ 
+  firebase.database().ref().update(updates);
+           
+</script>

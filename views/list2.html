@@ -1,0 +1,43 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>BBS Write</title>
+</head>
+<body>
+  <!-- enctype="application/x-www-form-urlencoded" 속성이 default로 잡혀있음 -->
+  <!-- <form action="/bbs/write.bbs" method="post" enctype="application/x-www-form-urlencoded"> -->
+  <form action="/bbs/write.bbs" method="post">
+      <input type="hidden" name="pageNum" value="${pageNum}">${pageNum}
+      <input type="hidden" name="depth" value="${article.depth}">
+      <input type="hidden" name="pos" value="${article.pos}">
+      <input type="hidden" name="groupId" value="${article.groupId}">
+       
+      <div align="center">
+      <!-- HTML5에서는 태그 속성을 바로 명시하지 않고, CSS를 작성하여 붙여준다. -->
+      <table border="2" width="200">
+        <tr>
+          <td>글쓴이 : </td>
+          <td>${id}</td>
+        </tr>
+        <tr>
+          <td>제목 : </td>
+          <td><input type="text" name="title"></td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <textarea cols="50" rows="20" name="content"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td>첨부 : </td>
+          <td><input type="file" name="fileName"></td>
+        </tr>
+        <tr>
+          <td><input type="submit" value="글쓰기"></td>
+          <td><input type="reset" value="글쓰기취소"></td>
+        </tr>
+      </table>
+    </div>
+  </form>
+</body>
+</html>

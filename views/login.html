@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+       <head>
+       <style>
+           #loginer
+           { padding: 20px;
+           margin-bottom: 20px;
+           border: 1px solid #bcbcbc;
+           text-align: center; }
+           #form
+           { font-size: 1.3em;
+           width: 50%;
+           display: inline-block; }
+           ::placeholder
+           { font-size: 1.3em;
+           font-family: 'Nanum Brush Script', cursive; }
+           button
+           { border: 0px;
+           background-color: white;
+           font-size : 2.0 em;
+           font-family: 'Nanum Brush Script', cursive; }
+           #signupimg
+           { font-size: 1em !important; }
+       </style>
+           <title>LOGIN</title>
+           <meta charset="uft-8">
+           <meta name="viewport" content="width=device-width, initial-scale=1">
+           <!--<link rel="stylesheet" href="css/index.css"-->
+
+           <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script" rel="stylesheet">
+           <style>
+               body
+               {
+                   font-family: 'Nanum Brush Script', cursive;
+               }
+               </style>
+               </head>
+
+           <body>
+               <div class="loginform">
+                   <ul>
+                       <li><a href="/">Login</a></li>
+                   </ul>
+               </div>
+
+               <div id="loginer">
+               <div id="form">
+                   <form action="/login" method="post">
+                   <fieldset>
+                   <legend>LOGIN !</legend>
+                   ID : <input type="text" name="id" placeholder="Enter Your Email">
+                   <br><br>
+                   PW : <input type="password" name="password" placeholder="Enter Your Password">
+                   <br><br>
+                   <button type="submit">Login!</button>
+                   <br>
+                   You Don't Have Your Account?  <a href="/signup">Join Account</a>
+                   </fieldset>
+                 </form>
+               </div>
+            </div>
+
+            <div id="footer">
+               <p align="center">&copy; Copyright</p>
+            </div>
+       </body>
+   </html>

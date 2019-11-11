@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+    <head>
+    <style>
+        #Joiner
+        { padding: 20px;
+        margin-bottom: 20px;
+        border: 1px solid #bcbcbc;
+        text-align: center; }
+        #form
+        { font-size: 1.3em;
+        width: 50%;
+        display: inline-block; }
+        ::placeholder
+        { font-size: 1.3em;
+        font-family: 'Nanum Brush Script', cursive; }
+        button
+        { border: 0px;
+        background-color: white; }
+        #signupimg
+        { font-size: 1em !important; }
+    </style>
+        <title>Join Account</title>
+        <meta charset="uft-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script" rel="stylesheet">
+        <style>
+        body
+        {
+            font-family: 'Nanum Brush Script', cursive;
+        }
+        </style>
+    </head>
+
+    <body>
+        <div class="loginform">
+            <ul>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </div>
+
+        <div id="Joiner">
+          <div id="form">
+            <form action="/signup" method="post" id="myForm">
+              <fieldset>
+                <legend>Account Join !</legend>
+                <tr> Name : </tr>
+                <input type="text" name="name" placeholder="Enter Your Name">
+                <br><br>
+                <tr> resident number : </tr>
+                <input type="text" name="jumin_1" placeholder="190629" maxlength=6> - <input type="password" name="jumin_2" placeholder="XXXXXXX" maxlength=7>
+                <br><br>
+                <tr> ID : </tr>
+                <input type="text" name="Id" placeholder="Enter your id for english" id="Id">
+                <br><br>
+                <tr> password : </tr>
+                <input type="password" name="mbpw" id="mbpw">
+                <br><br>
+                <tr> password check : </tr>
+                <input type="password" name="mbpw_re" id="mbpw_re">
+                <br><br>
+                <tr> Email : </tr>
+                <input type='text' name="email" id="email">@<input type='text' name="email_dns" id="email_dns">
+                <br><br>
+                <tr> Tel : </tr>
+                <input type='text' name="Tel" placeholder="please put in just number" id="Tel">
+                <br><br>
+                </fieldset>
+            </div>
+         </div>
+
+         <div>
+           <p align="center">
+             <input type="submit" value="Join!!!">
+             <a href="/">PreWindow</a>
+          </p>
+         </div>
+        </form>
+
+         <div id="footer">
+            <p align="center">&copy; Copyright</p>
+         </div>
+    </body>
+</html>
+
