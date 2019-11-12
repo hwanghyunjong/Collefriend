@@ -27,21 +27,21 @@ router.get('/', (req, res) => {
     }
 });
 
-router.post('/sub', (req, res) => {
-    var title = req.body.boardtitle;
-    var board = req.body.board;
-    var boardimg = req.body.boardimg;
+// router.post('/sub', (req, res) => {
+//     var title = req.body.boardtitle;
+//     var board = req.body.board;
+//     var boardimg = req.body.boardimg;
 
-    db.collection(`board(${req.session.userid})`).doc().set({
-        title: title,
-        board: board,
-        boardimg: boardimg
-    })
-    .then(function() {
-        res.send('<script type="text/javascript">alert("게시판 추가 완료!");</script>');
-        res.redirect('/main');
-    })
-});
+//     db.collection(`board(${req.session.userid})`).doc().set({
+//         title: title,
+//         board: board,
+//         boardimg: boardimg
+//     })
+//     .then(function() {
+//         res.send('<script type="text/javascript">alert("게시판 추가 완료!");</script>');
+//         res.redirect('/main');
+//     })
+// });
 
 router.post('/submit', (req, res) => {
     console.log(req.body)

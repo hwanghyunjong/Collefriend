@@ -28,8 +28,8 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-analytics.js"></script>
-
   <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
+
   <script>
     var firebaseConfig = {
       apiKey: "AIzaSyBk05Mc1934883sY06pTT20l-zAe2m0InA",
@@ -44,20 +44,35 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
 
+    var db = firebase.firestore();
+    var date = new Date();
+
     $(function(){
       $("#submit").click(function(){
         var message=$("#message").val()
         var title1=$('#mes').val()
-        var uploadfile=$('#input-file').val()
+        var username="<%= name%>";
         axios.post("/main/submit",{
-          message:message
+          message:message,
+          session:username
         }).
         then((result)=>{
-          if(result.data.result=="ok"){
-            window.alert("업로드 됐습니다.")
-            $("#message").val("")
-            $("#mes").val("")
-          }
+          db.collection(`board(${username})`).doc().set({
+            Date:date,
+            boardtitle: title1,
+            boardmessage: message
+          })
+          .then(function() {
+              if(result.data.result=="ok"){
+                window.alert("업로드 됐습니다.")
+                $("#message").val("")
+                $("#mes").val("")
+                
+              }
+          })
+          .catch(function() {
+            window.alert("업로드 오류!!!!")
+          })
         })
 
       })
@@ -341,7 +356,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%= name%></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id=usersname1><%= name%></span>
                 <img class="img-profile rounded-circle" src="">
               </a>
               <!-- Dropdown - User Information -->
@@ -388,7 +403,7 @@
                             </li>
                         </ul>
                     </div>
-                    <form action="/main/sub" method="POST">
+                    <!--<form action="/main/sub" method="POST">-->
                     <div class="card-body">
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
@@ -420,7 +435,7 @@
                                     <button type="submit" id="submit" class="btn btn-primary">게시하기</button>
                                 </div>
                             </div>
-                          </form>
+                          <!--</form>-->
                             <div class="btn-group">
                                 <button id="btnGroupDrop1" type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false">
