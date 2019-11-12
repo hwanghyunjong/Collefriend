@@ -15,7 +15,7 @@
     "express": "^4.17.1",
     "express-error-handler": "^1.1.0",
     "express-session": "^1.16.2",
-    "firebase": "^7.2.3",
+    "firebase": "^7.3.0",
     "fs": "0.0.1-security",
     "mongodb": "^2.2.11",
     "mongoose": "^5.7.1",

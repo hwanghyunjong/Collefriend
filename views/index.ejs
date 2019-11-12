@@ -26,14 +26,29 @@
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-analytics.js"></script>
 
+  <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
   <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyBk05Mc1934883sY06pTT20l-zAe2m0InA",
+      authDomain: "collefriends.firebaseapp.com",
+      databaseURL: "https://collefriends.firebaseio.com",
+      projectId: "collefriends",
+      storageBucket: "collefriends.appspot.com",
+      messagingSenderId: "845516350469",
+      appId: "1:845516350469:web:832b984284d3549ce0e86c",
+      measurementId: "G-P5RBZT6326"
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
     $(function(){
       $("#submit").click(function(){
-        console.log("submit")
         var message=$("#message").val()
         var title1=$('#mes').val()
-        console.log(message)
+        var uploadfile=$('#input-file').val()
         axios.post("/main/submit",{
           message:message
         }).
@@ -373,21 +388,22 @@
                             </li>
                         </ul>
                     </div>
+                    <form action="/main/sub" method="POST">
                     <div class="card-body">
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
                                 <div class="form-group">
                                     <label class="sr-only" for="message">post</label>
-                                    <textarea class="form-control" id="mes" rows="1" placeholder="글 제목"></textarea>
+                                    <textarea class="form-control" id="mes" name="boardtitle" rows="1" placeholder="글 제목"></textarea>
 
-                                    <textarea class="form-control" id="message" rows="3" placeholder="현재 어떤 생각중입니까?"></textarea>
+                                    <textarea class="form-control" id="message" name="board" rows="3" placeholder="현재 어떤 생각중입니까?"></textarea>
                                 </div>
 
                             </div>
                             <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
                                 <div class="form-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="customFile">
+                                        <input type="file" class="custom-file-input" id="customFile" name="boardimg">
                                         <label class="custom-file-label" for="customFile">사진 업로드</label>
                                     </div>
                                 </div>
@@ -396,7 +412,7 @@
                         </div>
                         <div class="btn-toolbar justify-content-between">
                             <div class="btn-group">
-                                <div class="filebox preview-image">
+                                <div class="filebox preview-image" >
                                     <input class="upload-name" value="파일선택" disabled="disabled">
 
                                     <label for="input-file">업로드</label>
@@ -404,6 +420,7 @@
                                     <button type="submit" id="submit" class="btn btn-primary">게시하기</button>
                                 </div>
                             </div>
+                          </form>
                             <div class="btn-group">
                                 <button id="btnGroupDrop1" type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false">
