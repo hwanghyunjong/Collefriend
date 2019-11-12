@@ -32,6 +32,7 @@
       $("#submit").click(function(){
         console.log("submit")
         var message=$("#message").val()
+        var title1=$('#mes').val()
         console.log(message)
         axios.post("/main/submit",{
           message:message
@@ -40,6 +41,7 @@
           if(result.data.result=="ok"){
             window.alert("업로드 됐습니다.")
             $("#message").val("")
+            $("#mes").val("")
           }
         })
 
