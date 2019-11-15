@@ -11,21 +11,23 @@ router.get('/', (req, res) => {
     if(!req.session.userid){
         res.redirect("/login")
     } else {
-        var docUserinfo = db.collection('students').doc(`userinfo(${req.session.userid})`);
-        // var docBoardinfo = db.collection(`board(김혁규)`).doc('fSdIFDNrSCLKlpPvWEgz');
-        var doc = docUserinfo.get()
+        //var docUserinfo = db.collection('students').doc(`userinfo(${req.session.userid})`);
+        var docBoardinfo = db.collection(`board(${req.session.username})`).doc('gApGCJlKKcuFmkBrRu6I');
+        var doc = docBoardinfo.get()
             .then(doc => {
-                var name = doc.data().name;
-                var nickname = doc.data().nickname;
-                var boardtime = '2019년 11월 14일 17시 52분';
-                var boardtitle = '혁규';
-                var boardmes = '혀여역규';
+                var name = '김혁규';
+                var nickname = 'Deft';
+                var boardtime = doc.data().Date;
+                var boardtitle = doc.data().boardtitle;
+                var boardmes = doc.data().boardmessage;
+                var imgurl = doc.data().imgUrl;
                 res.render('../views/index.ejs', {
                     name :  name,
                     username : nickname,
                     boardtime : boardtime,
                     boardtitle : boardtitle,
-                    boardmes : boardmes
+                    boardmes : boardmes,
+                    imgurl11 : imgurl
                 });
             })
             .catch(err => {

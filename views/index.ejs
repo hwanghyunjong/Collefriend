@@ -49,13 +49,13 @@
     var date = dateobj.toLocaleString();
     // date = dateobj.toString();
 
-    var docBoardinfo = db.collection(`board(김혁규)`).doc('fSdIFDNrSCLKlpPvWEgz');
-    var doc = docBoardinfo.get()
-        .then(doc => {
-          var wer = $('#just').attr("src");
-          var imgUrll = doc.data().imgUrl;
-          var wer = $('#just').attr("src", imgUrll);
-        })
+    // var docBoardinfo = db.collection(`board(김혁규)`).doc('fSdIFDNrSCLKlpPvWEgz');
+    // var doc = docBoardinfo.get()
+    //     .then(doc => {
+    //       var wer = $('#just').attr("src");
+    //       var imgUrll = doc.data().imgUrl;
+    //       var wer = $('#just').attr("src", imgUrll);
+    //     })
 
     $(function(){
       $("#submit").click(function(){
@@ -63,6 +63,11 @@
         var title1=$('#mes').val()
         var username="<%= name%>";
         var imgsrc1=$('#boardiimmg').attr("src");
+        if (imgsrc1!=null) {
+          imgsrc1=imgsrc1
+        } else {
+          imgsrc1="";
+        }
         axios.post("/main/submit",{
           message:message,
           session:username
@@ -486,7 +491,7 @@
                         </a>
 
                         <p class="card-text"><%= boardmes%></p>
-                        <img id="just" src="" alt="">
+                        <img id="just" src=<%= imgurl11%> alt="">
                     </div>
                     <div class="card-footer">
                         <a href="#" class="card-link"><i class="fa fa-heart"></i> 좋아요</a>
