@@ -20,6 +20,7 @@
   <link href="css/feed.css" rel="stylesheet">
   <link href="css/what.css" rel="stylesheet">
   <link href="css/image.css" rel="stylesheet">
+  <link href="css/index.css" rel="stylesheet">
 
   <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -61,7 +62,7 @@
       $("#submit").click(function(){
         var message=$("#message").val()
         var title1=$('#mes').val()
-        var username="<%= name%>";
+        var username='김혁규'
         var imgsrc1=$('#boardiimmg').attr("src");
         if (imgsrc1!=null) {
           imgsrc1=imgsrc1
@@ -123,6 +124,14 @@
         } 
       });
     });
+
+    function addBoard() {
+      var div = document.createElement('div');
+
+      div.className = 'row';
+
+  
+    }
 
   </script>
 
@@ -470,101 +479,53 @@
 
                 <!--- \\\\\\\Post-->
                 <div class="card gedf-card">
-                    <div class="card-header">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="mr-2">
-                                    <img class="rounded-circle" width="45" src="https://cdn.lolalytics.com/image/generated/probuilds/players280px/deft.png" alt="">
-                                </div>
-                                <div class="ml-2">
-                                    <div class="h5 m-0"><%= username%></div>
-                                    <div class="h7 text-muted"><%= name%></div>
-                                </div>
-                            </div>
-                        </div>
+                  <%
+                  boardList.forEach((board)=>{
 
-                    </div>
-                    <div class="card-body">
-                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i><%= boardtime%></div>
-                        <a class="card-link" href="#">
-                            <h5 class="card-title"><%= boardtitle%></h5>
-                        </a>
+                  
+                  %>
+                  
+                  <div class="card-header">
+                      <div class="d-flex justify-content-between align-items-center">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <div class="mr-2">
+                                  <img class="rounded-circle" width="45" src="https://cdn.lolalytics.com/image/generated/probuilds/players280px/deft.png" alt="">
+                              </div>
+                              <div class="ml-2">
+                                  <div class="h5 m-0"><%= username%></div>
+                                  <div class="h7 text-muted"><%= name%></div>
+                              </div>
+                          </div>
+                      </div>
 
-                        <p class="card-text"><%= boardmes%></p>
-                        <img id="just" src=<%= imgurl11%> alt="">
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="card-link"><i class="fa fa-heart"></i> 좋아요</a>
-                        <a href="#" class="card-link"><i class="fa fa-comment"></i> 댓글</a>
-                        <a href="#" class="card-link"><i class="fa fa-share"></i> 공유하기</a>
-                    </div>
+                  </div>
+                  <div class="card-body">
+                      <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i><%= board.boardtime%></div>
+                      <a class="card-link" href="#">
+                          <h5 class="card-title"><%= board.boardtitle%></h5>
+                      </a>
+
+                      <p class="card-text"><%= board.boardmes%></p>
+                      <img id="just" src=<%= board.imgurl%> alt="">
+                  </div>
+                  <div class="card-footer">
+                      <a href="#" class="card-link"><i class="fa fa-heart"></i> 좋아요</a>
+                      <a href="#" class="card-link"><i class="fa fa-comment"></i> 댓글</a>
+                      <a href="#" class="card-link"><i class="fa fa-share"></i> 공유하기</a>
+                  </div>
+                  <% }) %>
+                    
                 </div>
                 <!-- Post /////-->
 
 
                 <!--- \\\\\\\Post-->
-                <div class="card gedf-card">
-                    <div class="card-header">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="mr-2">
-                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
-                                </div>
-                                <div class="ml-2">
-                                    <div class="h5 m-0"><%= username%></div>
-                                    <div class="h7 text-muted"><%= name%></div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="card-body">
-                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>작성시간</div>
-                        <a class="card-link" href="#">
-                            <h5 class="card-title">제목</h5>
-                        </a>
-
-                        <p class="card-text">작성 내용</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="card-link"><i class="fa fa-heart"></i> 좋아요</a>
-                        <a href="#" class="card-link"><i class="fa fa-comment"></i> 댓글</a>
-                        <a href="#" class="card-link"><i class="fa fa-share"></i> 공유하기</a>
-                    </div>
-                </div>
+              
                 <!-- Post /////-->
 
 
                 <!--- \\\\\\\Post-->
-                <div class="card gedf-card">
-                    <div class="card-header">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="mr-2">
-                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
-                                </div>
-                                <div class="ml-2">
-                                    <div class="h5 m-0"><%= username%></div>
-                                    <div class="h7 text-muted"><%= name%></div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="card-body">
-                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>작성시간</div>
-                        <a class="card-link" href="#">
-                            <h5 class="card-title">제목</h5>
-                        </a>
-
-                        <p class="card-text">작성 내용</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="card-link"><i class="fa fa-heart"></i> 좋아요</a>
-                        <a href="#" class="card-link"><i class="fa fa-comment"></i> 댓글</a>
-                        <a href="#" class="card-link"><i class="fa fa-share"></i> 공유하기</a>
-                    </div>
-                </div>
+               
 
         <!-- /.container-fluid -->
 

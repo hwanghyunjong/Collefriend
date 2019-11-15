@@ -12,22 +12,37 @@ router.get('/', (req, res) => {
         res.redirect("/login")
     } else {
         //var docUserinfo = db.collection('students').doc(`userinfo(${req.session.userid})`);
-        var docBoardinfo = db.collection(`board(${req.session.username})`).doc('gApGCJlKKcuFmkBrRu6I');
+        var docBoardinfo = db.collection(`board(${req.session.username})`);
+        var docUserinfo = db.collection('student').doc(`userinfo(${req.session.userid})`)
         var doc = docBoardinfo.get()
             .then(doc => {
+                
+                var resultArray=[]
+                doc.forEach((item)=>{
+                    console.log(item.data())
+                    var data=item.data()
+                    resultArray.push({
+                        boardtime : data.Date,
+                        boardtitle : data.boardtitle,
+                        boardmes : data.boardmessage,
+                        imgurl : data.imgUrl  
+                    })
+                })
                 var name = '김혁규';
                 var nickname = 'Deft';
-                var boardtime = doc.data().Date;
-                var boardtitle = doc.data().boardtitle;
-                var boardmes = doc.data().boardmessage;
-                var imgurl = doc.data().imgUrl;
+                // var boardtime = doc.data().Date;
+                // var boardtitle = doc.data().boardtitle;
+                // var boardmes = doc.data().boardmessage;
+                // var imgurl = doc.data().imgUrl;
+                console.log(resultArray)
                 res.render('../views/index.ejs', {
+                    boardList:resultArray,
                     name :  name,
-                    username : nickname,
-                    boardtime : boardtime,
-                    boardtitle : boardtitle,
-                    boardmes : boardmes,
-                    imgurl11 : imgurl
+                    username : nickname
+                    // boardtime : boardtime,
+                    // boardtitle : boardtitle,
+                    // boardmes : boardmes,
+                    // imgurl11 : imgurl
                 });
             })
             .catch(err => {
