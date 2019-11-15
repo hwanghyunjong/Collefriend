@@ -48,6 +48,9 @@
     var db = firebase.firestore();
     var dateobj = new Date();
     var date = dateobj.toLocaleString();
+
+    var userid = '<%= userid%>';
+
     // date = dateobj.toString();
 
     // var docBoardinfo = db.collection(`board(김혁규)`).doc('fSdIFDNrSCLKlpPvWEgz');
@@ -57,6 +60,13 @@
     //       var imgUrll = doc.data().imgUrl;
     //       var wer = $('#just').attr("src", imgUrll);
     //     })
+
+    var docBoardinfo = db.collection('students').doc(`userinfo(${userid})`);
+    var doc = docBoardinfo.get()
+        .then(doc => {
+          var usersname = doc.data().name;
+          var usersnickname = doc.data().nickname; 
+        })
 
     $(function(){
       $("#submit").click(function(){
@@ -129,7 +139,6 @@
       var div = document.createElement('div');
 
       div.className = 'row';
-
   
     }
 
@@ -290,7 +299,7 @@
                     </div>
                   </div>
                   <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
+                    <div class="small text-gray-500"><%= userid%></div>
                     <span class="font-weight-bold">A new monthly report is ready to download!</span>
                   </div>
                 </a>
@@ -478,13 +487,13 @@
                 <!-- Post /////-->
 
                 <!--- \\\\\\\Post-->
-                <div class="card gedf-card">
+                <!--div class="card gedf-card"-->
                   <%
                   boardList.forEach((board)=>{
 
                   
                   %>
-                  
+                  <div class="card gedf-card">
                   <div class="card-header">
                       <div class="d-flex justify-content-between align-items-center">
                           <div class="d-flex justify-content-between align-items-center">
@@ -513,9 +522,10 @@
                       <a href="#" class="card-link"><i class="fa fa-comment"></i> 댓글</a>
                       <a href="#" class="card-link"><i class="fa fa-share"></i> 공유하기</a>
                   </div>
+                </div>
                   <% }) %>
                     
-                </div>
+                
                 <!-- Post /////-->
 
 
