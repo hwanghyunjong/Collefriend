@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,6 +13,7 @@
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -21,6 +21,7 @@
   <link href="css/what.css" rel="stylesheet">
   <link href="css/image.css" rel="stylesheet">
   <link href="css/index.css" rel="stylesheet">
+  <link href="css/profile.css" rel="stylesheet">
 
   <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -30,120 +31,11 @@
   <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-analytics.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
-
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <script>
-    var firebaseConfig = {
-      apiKey: "AIzaSyBk05Mc1934883sY06pTT20l-zAe2m0InA",
-      authDomain: "collefriends.firebaseapp.com",
-      databaseURL: "https://collefriends.firebaseio.com",
-      projectId: "collefriends",
-      storageBucket: "collefriends.appspot.com",
-      messagingSenderId: "845516350469",
-      appId: "1:845516350469:web:832b984284d3549ce0e86c",
-      measurementId: "G-P5RBZT6326"
-    };
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
 
-    var db = firebase.firestore();
-    var dateobj = new Date();
-    var date = dateobj.toLocaleString();
-
-    // var userid = '<%= userid%>';
-    // var username = '<%= name%>';
-
-    // date = dateobj.toString();
-
-    // var docBoardinfo = db.collection(`board(김혁규)`).doc('fSdIFDNrSCLKlpPvWEgz');
-    // var doc = docBoardinfo.get()
-    //     .then(doc => {
-    //       var wer = $('#just').attr("src");
-    //       var imgUrll = doc.data().imgUrl;
-    //       var wer = $('#just').attr("src", imgUrll);
-    //     })
-
-    // var docStudents = db.collection('students').doc(`userinfo(${userid})`);
-
-    $(function(){
-      $("#submit").click(function(){
-        var message=$("#message").val()
-        var title1=$('#mes').val()
-        var username='<%= name%>';
-        var userid = '<%= userid%>';
-        var usernickname = '<%= username%>';
-        var imgsrc1=$('#boardiimmg').attr("src");
-        if (imgsrc1!=null) {
-          imgsrc1=imgsrc1
-        } else {
-          imgsrc1="";
-        }
-        axios.post("/main/submit",{
-          message:message,
-          session:username
-        }).
-        then((result)=>{
-          db.collection(`board(${username})`).doc().set({
-            Date:date,
-            boardtitle: title1,
-            boardmessage: message,
-            imgUrl: imgsrc1,
-            name: username,
-            nickname: usernickname
-          })
-          .then(function() {
-              if(result.data.result=="ok"){
-                window.alert("업로드 됐습니다.")
-                $("#message").val("")
-                $("#mes").val("")
-              }
-          })
-          .catch(function() {
-            window.alert("업로드 오류!!!!")
-          })
-        })
-
-      })
-    })
-
-    $(document).ready(function(){ 
-        var imgTarget = $('.preview-image .upload-hidden'); 
-    
-        imgTarget.on('change', function(){ 
-        var parent = $(this).parent(); 
-        parent.children('.upload-display').remove(); 
-      
-        if(window.FileReader){ //image 파일만 
-          if (!$(this)[0].files[0].type.match(/image\//)) return; 
-        
-          var reader = new FileReader(); 
-          reader.onload = function(e){ 
-            var src = e.target.result; 
-            parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img src="'+src+'" class="upload-thumb" id="boardiimmg"></div></div>'); 
-          } 
-          reader.readAsDataURL($(this)[0].files[0]); 
-        } 
-      
-        else { 
-          $(this)[0].select(); 
-          $(this)[0].blur(); 
-          var imgSrc = document.selection.createRange().text; 
-          parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img class="upload-thumb"></div></div>'); 
-        
-          var img = $(this).siblings('.upload-display').find('img'); 
-          img[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enable='true',sizingMethod='scale',src=\""+imgSrc+"\")"; 
-        } 
-      });
-    });
-
-    function addBoard() {
-      var div = document.createElement('div');
-
-      div.className = 'row';
-  
-    }
 
   </script>
-
 </head>
 
 <body id="page-top">
@@ -391,7 +283,7 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" id=usersname1><%= name%></span>
-                <img class="img-profile rounded-circle" src="https://support.c2cschools.com/s/cache/97/b3/97b3f264d2eea1f1540210b25ecde491.png">
+                <img class="img-profile rounded-circle" src="https://support.c2cschools.com/s/cache/97/b3/97b3f264d2eea1f1540210b25ecde491.png" id="userimg">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -421,122 +313,145 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
-            <div class="col-md-6 gedf-main">
-        
-                <!--- \\\\\\\Post-->
-                <div class="card gedf-card">
-                    <div class="card-header">
-                        <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">
-                                    타임라인 작성하기</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="images-tab" data-toggle="tab" role="tab" aria-controls="images" aria-selected="false" href="#images">사진</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!--<form action="/main/sub" method="POST">-->
-                    <div class="card-body">
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
-                                <div class="form-group">
-                                    <label class="sr-only" for="message">post</label>
-                                    <textarea class="form-control" id="mes" name="boardtitle" rows="1" placeholder="글 제목"></textarea>
-
-                                    <textarea class="form-control" id="message" name="board" rows="3" placeholder="현재 어떤 생각중입니까?"></textarea>
-                                </div>
-
+        <div class="container emp-profile">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img src="https://support.c2cschools.com/s/cache/97/b3/97b3f264d2eea1f1540210b25ecde491.png" alt=""/>
+                            <div class="file btn btn-lg btn-primary">
+                                Change Photo
+                                <input type="file" name="file"/>
                             </div>
-                            <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
-                                <div class="form-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="customFile" name="boardimg">
-                                        <label class="custom-file-label" for="customFile">사진 업로드</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5>
+                                        김혁규
+                                    </h5>
+                                    <h6>
+                                        명지전문대
+                                    </h6>
+                                    <p class="proile-rating">정보통신공학과</p>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">개인정보</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+                            <p>WORK LINK</p>
+                            <a href="">Website Link</a><br/>
+                            <a href="">Bootsnipp Profile</a><br/>
+                            <a href="">Bootply Profile</a>
+                            <p>SKILLS</p>
+                            <a href="">Web Designer</a><br/>
+                            <a href="">Web Developer</a><br/>
+                            <a href="">WordPress</a><br/>
+                            <a href="">WooCommerce</a><br/>
+                            <a href="">PHP, .Net</a><br/>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>사용자 닉네임</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Deft</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>사용자 이름</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>김혁규</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Deft2@naver.com</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Phone</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>010 xxxx xxxx</p>
+                                            </div>
+                                        </div>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Experience</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Expert</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Hourly Rate</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>10$/hr</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Total Projects</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>230</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>English Level</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Expert</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Availability</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>6 months</p>
+                                            </div>
+                                        </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>Your Bio</label><br/>
+                                        <p>Your detail description</p>
                                     </div>
                                 </div>
-                                <div class="py-4"></div>
-                            </div>
-                        </div>
-                        <div class="btn-toolbar justify-content-between">
-                            <div class="btn-group">
-                                <div class="filebox preview-image" >
-                                    <input class="upload-name" value="파일선택" disabled="disabled">
-
-                                    <label for="input-file">업로드</label>
-                                    <input type="file" id="input-file" class="upload-hidden">
-                                    <button type="submit" id="submit" class="btn btn-primary">게시하기</button>
-                                </div>
-                            </div>
-                          <!--</form>-->
-                            <div class="btn-group">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <i class="fa fa-globe"></i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-                                    <a class="dropdown-item" href="#"><i class="fa fa-globe"></i>  전체공유</a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-users"></i>  친구들만</a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-user"></i>  나만보기</a>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Post /////-->
-
-                <!--- \\\\\\\Post-->
-                <!--div class="card gedf-card"-->
-                  <%
-                  boardList.forEach((board)=>{
-
-                  
-                  %>
-                  <div class="card gedf-card">
-                  <div class="card-header">
-                      <div class="d-flex justify-content-between align-items-center">
-                          <div class="d-flex justify-content-between align-items-center">
-                              <div class="mr-2">
-                                  <img class="rounded-circle" width="45" src="https://cdn.lolalytics.com/image/generated/probuilds/players280px/deft.png" alt="">
-                              </div>
-                              <div class="ml-2">
-                                  <div class="h5 m-0"><%= username%></div>
-                                  <div class="h7 text-muted"><%= name%></div>
-                              </div>
-                          </div>
-                      </div>
-
-                  </div>
-                  <div class="card-body">
-                      <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i><%= board.boardtime%></div>
-                      <a class="card-link" href="#">
-                          <h5 class="card-title"><%= board.boardtitle%></h5>
-                      </a>
-
-                      <p class="card-text"><%= board.boardmes%></p>
-                      <img id="just" src=<%= board.imgurl%> alt="">
-                  </div>
-                  <div class="card-footer">
-                      <a href="#" class="card-link"><i class="fa fa-heart"></i> 좋아요</a>
-                      <a href="#" class="card-link"><i class="fa fa-comment"></i> 댓글</a>
-                      <a href="#" class="card-link"><i class="fa fa-share"></i> 공유하기</a>
-                  </div>
-                </div>
-                  <% }) %>
-                    
-                
-                <!-- Post /////-->
-
-
-                <!--- \\\\\\\Post-->
-              
-                <!-- Post /////-->
-
-
-                <!--- \\\\\\\Post-->
-               
-
+            </form>           
+        </div>
         <!-- /.container-fluid -->
 
       </div>

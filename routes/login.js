@@ -35,8 +35,10 @@ router.route('/').post(function(req, res) {
 				.then(doc => {
 					var userid = doc.data().id;
 					var username = doc.data().name;
+					var usernickname = doc.data().nickname;
 					req.session.userid=userid;
 					req.session.username=username;
+					req.session.usernickname=usernickname;
 					// console.log(req.session.userid);
 					res.redirect('/main');
 				})

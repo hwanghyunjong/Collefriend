@@ -18,7 +18,6 @@ router.get('/', (req, res) => {
             .then(doc => {
                 var resultArray=[]
                 doc.forEach((item)=>{
-                    console.log(item.data())
                     var data=item.data()
                     resultArray.push({
                         boardtime : data.Date,
@@ -27,8 +26,9 @@ router.get('/', (req, res) => {
                         imgurl : data.imgUrl  
                     })
                 })
-                var name = '김혁규';
-                var nickname = 'Deft';
+
+                var name = req.session.username;
+                var nickname = req.session.usernickname;
                 // var boardtime = doc.data().Date;
                 // var boardtitle = doc.data().boardtitle;
                 // var boardmes = doc.data().boardmessage;
