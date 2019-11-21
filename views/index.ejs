@@ -48,6 +48,7 @@
     var db = firebase.firestore();
     var dateobj = new Date();
     var date = dateobj.toLocaleString();
+    var count = 0;
 
     // var userid = '<%= userid%>';
     // var username = '<%= name%>';
@@ -91,7 +92,8 @@
             boardmessage: message,
             imgUrl: imgsrc1,
             name: username,
-            nickname: usernickname
+            nickname: usernickname,
+            Likey: 0
           })
           .then(function() {
               if(result.data.result=="ok"){
@@ -138,13 +140,17 @@
       });
     });
 
-    function addBoard() {
-      var div = document.createElement('div');
-
-      div.className = 'row';
-  
+    function showPopup() { 
+        if ($('#Likey').html() == "좋아요") {
+          $('#Likey').html("싫어요");
+          count++;
+        } else {
+          $('#Likey').html("좋아요");
+          count--;
+        }
+        $('#justlike').text(`${count}명이 좋아합니다`);
+        return false;
     }
-
   </script>
 
 </head>
@@ -519,9 +525,10 @@
 
                       <p class="card-text"><%= board.boardmes%></p>
                       <img id="just" src=<%= board.imgurl%> alt="">
+                      <p class="card-text" id="justlike"></p>
                   </div>
                   <div class="card-footer">
-                      <a href="#" class="card-link"><i class="fa fa-heart"></i> 좋아요</a>
+                      <a class="card-link" id="Likey" onclick="showPopup()"><%= board.Likey%>좋아요</a>
                       <a href="#" class="card-link"><i class="fa fa-comment"></i> 댓글</a>
                       <a href="#" class="card-link"><i class="fa fa-share"></i> 공유하기</a>
                   </div>
