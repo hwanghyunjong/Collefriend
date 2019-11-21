@@ -25,6 +25,7 @@ router.get('/',  (req, res) => {
 });
 
 router.route('/').post(function(req, res) {
+	console.log(req.body)
 	var paramId = req.body.id || req.query.id;
 	var paramPassword = req.body.password || req.query.password;
 	

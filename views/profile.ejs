@@ -32,10 +32,26 @@
   <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-analytics.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  
   <script>
+    var timestamp = Number(new Date());
 
-
-  </script>
+    $(function() {
+      $("#button1").click(function() {
+        var storageRef = firebase.storage().ref(timestamp.toString());
+        var profileimg = $('#inp-img').prop('files')[0];
+        storageRef.put(profileimg);
+        axios.post("/profile/submit",{
+          profileimg:profileimg
+        }).
+        then((result)=> {
+          if(result.data.result=="ok"){
+            window.alert("업로드")
+          }
+        })
+      })
+    })
+ </script>
 </head>
 
 <body id="page-top">
@@ -317,35 +333,35 @@
             <form method="post">
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="profile-img">
+                        <div class="profile-img" id="preview">
                             <img src="https://support.c2cschools.com/s/cache/97/b3/97b3f264d2eea1f1540210b25ecde491.png" alt=""/>
                             <div class="file btn btn-lg btn-primary">
                                 Change Photo
-                                <input type="file" name="file"/>
+                                <input type="file" name="file" id="inp-img"/>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h5>
-                                        김혁규
+                                        <%= name%>
                                     </h5>
                                     <h6>
-                                        명지전문대
+                                        <%= school%>
                                     </h6>
-                                    <p class="proile-rating">정보통신공학과</p>
+                                    <p class="proile-rating"><%= department%></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">개인정보</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">개인정보 수정</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" id="button1"/>
                     </div>
                 </div>
                 <div class="row">
@@ -371,7 +387,7 @@
                                                 <label>사용자 닉네임</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Deft</p>
+                                                <p><%= username%></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -379,7 +395,7 @@
                                                 <label>사용자 이름</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>김혁규</p>
+                                                <p><%= name%></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -387,65 +403,59 @@
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Deft2@naver.com</p>
+                                                <p><%= userid%></p>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Phone</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>010 xxxx xxxx</p>
-                                            </div>
+                                          <div class="col-md-6">
+                                              <label>학교</label>
+                                          </div>
+                                          <div class="col-md-6">
+                                              <p><%= school%></p>
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-md-6">
+                                            <label>학과</label>
                                         </div>
+                                        <div class="col-md-6">
+                                            <p><%= department%></p>
+                                        </div>
+                                    </div>
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Experience</label>
+                                                <label>사용자 닉네임</label>
                                             </div>
-                                            <div class="col-md-6">
-                                                <p>Expert</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Hourly Rate</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>10$/hr</p>
+                                            <div class="form-group">
+                                              <input type="text" class="form-control form-control-user" name="password" id="justpw">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Total Projects</label>
+                                                <label>사용자 이름</label>
                                             </div>
-                                            <div class="col-md-6">
-                                                <p>230</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>English Level</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Expert</p>
+                                            <div class="form-group">
+                                              <input type="text" class="form-control form-control-user" name="password" id="justpw">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Availability</label>
+                                                <label>학교</label>
                                             </div>
-                                            <div class="col-md-6">
-                                                <p>6 months</p>
+                                            <div class="form-group">
+                                              <input type="text" class="form-control form-control-user" name="password" id="justpw">
                                             </div>
                                         </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label>Your Bio</label><br/>
-                                        <p>Your detail description</p>
-                                    </div>
-                                </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>학과</label>
+                                            </div>
+                                            <div class="form-group">
+                                              <input type="text" class="form-control form-control-user" name="password" id="justpw">
+                                            </div>
+                                        </div>
                             </div>
                         </div>
                     </div>

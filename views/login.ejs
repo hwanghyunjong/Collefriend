@@ -44,6 +44,11 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
 
+    window.setToken=function(token){
+        window.token=token
+        $("#token").val(token)
+      }
+
   </script>
 
 </head>
@@ -77,6 +82,7 @@
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
                         <input type="checkbox" class="custom-control-input" id="customCheck">
+                        <input type="hidden" name="token" id="token">
                         <label class="custom-control-label" for="customCheck">이메일 기억하기</label>
                       </div>
                     </div>

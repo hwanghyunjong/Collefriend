@@ -10,6 +10,7 @@ var loginRouter = require('./routes/login');
 var joinRouter = require('./routes/signup');
 var mainRouter = require('./routes/main');
 var logoutRouter = require('./routes/logout');
+var profileRouter = require('./routes/profile');
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use('/login', loginRouter);
 app.use('/signup', joinRouter);
 app.use('/main', mainRouter);
 app.use('/logout', logoutRouter);
+app.use('/profile', profileRouter);
 
 app.use("/", express.static(path.join(__dirname,"./views")))
 
