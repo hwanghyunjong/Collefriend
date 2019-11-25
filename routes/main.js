@@ -23,7 +23,8 @@ router.get('/', (req, res) => {
                         boardtime : data.Date,
                         boardtitle : data.boardtitle,
                         boardmes : data.boardmessage,
-                        imgurl : data.imgUrl  
+                        imgurl : data.imgUrl,
+                        Likey : data.Likey
                     })
                 })
 
