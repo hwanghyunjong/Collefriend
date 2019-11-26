@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
     }
 });
 
-router.post('/submit', (req, res) => {
+router.post('/', (req, res) => {
     console.log(req.body)
     console.log(req.session)
     res.json({
