@@ -1,0 +1,51 @@
+@charset "utf-8";
+
+table.type09 {
+    border-collapse: collapse;
+    line-height: 3;
+    text-align: center;
+    margin-left: 10%;
+    margin-bottom: 5%;
+}
+/* table.type09 tbody .btn{
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: center;
+    color: #033;
+    font-weight: bold;
+    
+} */
+table.type09 thead .day{
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #369;
+    border-bottom: 3px solid #036;
+}
+table.type09 thead .noday{
+    padding: 40px;
+    vertical-align: top;
+    border-bottom: none;
+}
+table.type09 tbody .time{
+    width: 150px;
+    height: 70px;
+    text-align: center;
+    font-weight: bold;
+    vertical-align: top;
+    border: 0.5px solid #036;
+    border-bottom: 1px solid #ccc;
+    background: #f3f6f7;
+}
+table.type09 tbody .dayTime {
+    width: 150px;
+    height: 70px;
+    font-weight: bold;
+    vertical-align: top;
+    border: 0.5px solid #036;
+    border-bottom: 1px solid #ccc;
+    background: #f3f6f7;
+}
+table.type09 tbody .th {
+    background: none;
+}

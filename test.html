@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style type="text/css"> 
+      body{ 
+          text-align: center; 
+          display: block; 
+          margin: 0 auto; 
+          font-size: 16px; 
+          color: #999; 
+      } 
+      h1{ 
+          font-family: 'Oswald', sans-serif; 
+          font-size: 30px; 
+          color: #216182; 
+      }
+      label { 
+           display: block; 
+           margin-top: 20px; 
+           letter-spacing: 2px; 
+       } 
+      form { 
+          margin: 0 auto; 
+          width: 459px; 
+      } 
+      .put, textarea { 
+          width: 439px; 
+          height: 27px; 
+          background-color: #efefef; 
+          border-radius: 6px; 
+          border: 1px solid #dedede; 
+          padding: 10px; 
+          margin-top: 3px; 
+          font-size: 0.9em; 
+          color: #3a3a3a; 
+      } 
+      
+      textarea{ 
+          height: 60px; 
+          background-color: #efefef; 
+      } 
+      #submit{ 
+          width: 127px; 
+          height: 48px; 
+          text-align: center; 
+          border: none; 
+          margin-top: 20px; 
+          cursor: pointer; 
+      } 
+      #submit:hover{ 
+          color: #fff; 
+          background-color: #216282; 
+          opacity: 0.9; 
+      } 
+      #add_cancel { 
+          width: 127px; height: 48px; 
+          text-align: center; 
+          border: none; 
+          margin-top: 20px; 
+          cursor: pointer; 
+      } 
+      #add_cancel:hover{ 
+          color: #fff; 
+          background-color: #216282; 
+          opacity: 0.9; 
+      }
+ 
+     .add_modal { 
+          position: fixed; 
+          left: 0; 
+          top: 0; 
+          width: 100%; 
+          height: 100%; 
+          background-color: rgba(0, 0, 0, 0.5); 
+          opacity: 0; 
+          visibility: hidden; 
+          transform: scale(1.1); 
+          transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s; 
+      } 
+      .add_modal-content { 
+          position: absolute; 
+          top: 50%; 
+          left: 50%; 
+          transform: translate(-50%, -50%); 
+          background-color: white; 
+          padding: 1rem 1.5rem; 
+          width: 500px; 
+          height: 800px; 
+          border-radius: 0.5rem; 
+      } 
+      .add_close-button { 
+          float: right; 
+          width: 1.5rem; 
+          line-height: 1.5rem; 
+          text-align: center; 
+          cursor: pointer; 
+          border-radius: 0.25rem; 
+          background-color: lightgray; 
+      } 
+      .add_close-button:hover { 
+          background-color: darkgray; 
+      } 
+      .add_show-modal { 
+          opacity: 1; 
+          visibility: visible; 
+          transform: scale(1.0); 
+          transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s; 
+      } 
+     
+     
+      #delete{ 
+          width: 127px; 
+          height: 48px; 
+          text-align: center; 
+          border: none; 
+          margin-top: 20px; 
+          cursor: pointer; 
+      } 
+      #delete:hover{ 
+          color: #fff; 
+          background-color: #216282; 
+          opacity: 0.9; 
+      } 
+      #del_cancel { 
+          width: 127px; height: 48px; 
+          text-align: center; 
+          border: none; 
+          margin-top: 20px; 
+          cursor: pointer; 
+      } 
+      #del_cancel:hover{ 
+          color: #fff; 
+          background-color: #216282; 
+          opacity: 0.9; 
+      }
+ 
+     .del_modal { 
+          position: fixed; 
+          left: 0; 
+          top: 0; 
+          width: 100%; 
+          height: 100%; 
+          background-color: rgba(0, 0, 0, 0.5); 
+          opacity: 0; 
+          visibility: hidden; 
+          transform: scale(1.1); 
+          transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s; 
+      } 
+      .del_modal-content { 
+          position: absolute; 
+          top: 50%; 
+          left: 50%; 
+          transform: translate(-50%, -50%); 
+          background-color: white; 
+          padding: 1rem 1.5rem; 
+          width: 500px; 
+          height: 600px; 
+          border-radius: 0.5rem; 
+      } 
+      .del_close-button { 
+          float: right; 
+          width: 1.5rem; 
+          line-height: 1.5rem; 
+          text-align: center; 
+          cursor: pointer; 
+          border-radius: 0.25rem; 
+          background-color: lightgray; 
+      } 
+      .del_close-button:hover { 
+          background-color: darkgray; 
+      } 
+      .del_show-modal { 
+          opacity: 1; 
+          visibility: visible; 
+          transform: scale(1.0); 
+          transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s; 
+      } 
+ </style>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>COL_FIREND - 시간표</title>
+
+  <!-- Custom fonts for this template -->
+  <link href="views/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="views/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="views/css/table.css" rel="stylesheet">
+  <link href="views/css/addModal.css" rel="stylesheet">
+
+  <!-- Custom styles for this page -->
+  <link href="views/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="views/index.html">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fa fa-university"></i>
+          </div>
+          <div class="sidebar-brand-text mx-3">Col_Firend</div>
+      </a>
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+          <a class="nav-link" href="views/index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>뉴스피드</span></a>
+      </li>
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        화면
+      </div>
+
+      <!-- Nav Item - index -->
+      <li class="nav-item">
+          <a class="nav-link" href="views/index.html">
+            <i class="fa fa-fw fa-home"></i>
+            <span>메인페이지</span></a>
+        </li>
+
+      <!-- Nav Item - login -->
+      <li class="nav-item">
+          <a class="nav-link" href="views/login.html">
+            <i class="fa fa-fw fa-lock"></i>
+            <span>로그인</span></a>
+      </li>
+      
+      <!-- Nav Item - register -->
+      <li class="nav-item">
+          <a class="nav-link" href="views/register.html">
+            <i class="fa fa-fw fa-user-plus"></i>
+            <span>회원가입</span></a>
+      </li>
+
+      <!-- Nav Item - forgot-password -->
+      <li class="nav-item">
+          <a class="nav-link" href="views/forgot-password.html">
+            <i class="fa fa-fw fa-unlock-alt"></i>
+            <span>비밀번호 찾기</span></a>
+      </li>
+
+      <!-- Nav Item - famous_restaurant -->
+      <li class="nav-item">
+          <a class="nav-link" href="views/famous_restaurant.html">
+            <i class="fa fa-fw fa-star"></i>
+            <span>맛집</span></a>
+          </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <!-- Topbar Search -->
+          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="검색할 내용을 입력하세요!" aria-label="Search" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                      <input type="text" class="form-control bg-light border-0 small" placeholder="검색할 내용을 입력하세요!" aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
+
+            <!-- Nav Item - Alerts -->
+            <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-bell fa-fw"></i>
+                  <!-- Counter - Alerts -->
+                  <span class="badge badge-danger badge-counter">알람수</span>
+                </a>
+                <!-- Dropdown - Alerts -->
+                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                  <h6 class="dropdown-header">
+                    알람
+                  </h6>
+                  <a class="dropdown-item text-center small text-gray-500" href="#">알람 전체 보기</a>
+                </div>
+              </li>
+  
+              <!-- Nav Item - Messages -->
+              <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-comments fa-fw"></i>
+                  <!-- Counter - Messages -->
+                  <span class="badge badge-danger badge-counter">채팅수</span>
+                </a>
+                <!-- Dropdown - Messages -->
+                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                  <h6 class="dropdown-header">
+                    실시간채팅
+                  </h6>
+                  <a class="dropdown-item text-center small text-gray-500" href="#">메시지 전체 보기</a>
+                </div>
+              </li>
+  
+              <div class="topbar-divider d-none d-sm-block"></div>
+  
+              <!-- Nav Item - User Information -->
+              <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">사용자닉네임</span>
+                  <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                  <a class="dropdown-item" href="#">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    개인정보
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                    설정
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                    활동 로그
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    로그아웃
+                  </a>
+                </div>
+              </li>
+  
+            </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+    </div>
+    <ul class="navbar-nav sidebar accordion" id="accordionSidebar" background="none">
+
+      <!-- End of Content Wrapper -->
+    <div class="container-fluid">
+      <table class="type09">
+          <thead>
+              <tr>
+                  <th class="noday"></th>
+                  <th class="noday"></th>
+                  <th class="day" scope="cols">시간</th>
+                  <th class="day" scope="cols">월요일</th>
+                  <th class="day" scope="cols">화요일</th>
+                  <th class="day" scope="cols">수요일</th>
+                  <th class="day" scope="cols">목요일</th>
+                  <th class="day" scope="cols">금요일</th>
+              </tr>
+          </thead>
+          <tbody>
+          <tr class="noNine">
+            <th>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fa fa-fw fa-plus"></i>
+                  <span class="add_trigger">추가</span> 
+                    <!-- 팝업 될 레이어 --> 
+                    <div class="add_modal"> 
+                        <div class="add_modal-content"> 
+                           <span class="add_close-button">&times;</span> 
+                           <h1 class="title">시간표 추가</h1> 
+                           <form> 
+                              <dt>
+                                  과목명 (필수)
+                                  <input type="text" name="name" placeholder="예) 캡스톤 디자인" maxlength="20" class="put">
+                              </dt> 
+                               <dt>
+                                 교수님 성함
+                                 <input type="text" name="name" placeholder="예) 홍길동 교수님" maxlength="20" class="put">
+                               </dt>
+                               <dt>
+                                 강의실
+                                 <input type="text" name="name" placeholder="예) 공학관 801호" maxlength="20" class="put">
+                               </dt>
+                               <dt>요일</dt>
+                               <table>
+                                 <tr id=checkk>
+                                  <th><input type="checkbox" name="setDay" value="monday">월요일</th>
+                                  <th><input type="checkbox" name="setDay" value="tuesday">화요일</th>
+                                  <th><input type="checkbox" name="setDay" value="wednesday">수요일</th>
+                                  <th><input type="checkbox" name="setDay" value="thursday">목요일</th>
+                                  <th><input type="checkbox" name="setDay" value="friday">금요일</th>
+                                </tr>                
+                               </table>
+                               <dt>시간</dt>
+                               <table>
+                                 <tr>
+                                  <th><input type="checkbox" name="setTime" value="9">09:00 ~ 09:50</th>
+                                  <th><input type="checkbox" name="setTime" value="10">10:00 ~ 10:50</th>
+                                  <th><input type="checkbox" name="setTime" value="11">11:00 ~ 11:50</th>
+                                 </tr>
+                                 <tr>
+                                    <th><input type="checkbox" name="setTime" value="12">12:00 ~ 12:50</th>
+                                    <th><input type="checkbox" name="setTime" value="13">13:00 ~ 13:50</th>
+                                    <th><input type="checkbox" name="setTime" value="14">14:00 ~ 14:50</th>
+                                  </tr>
+                                  <tr>
+                                    <th><input type="checkbox" name="setTime" value="15">15:00 ~ 15:50</th>
+                                    <th><input type="checkbox" name="setTime" value="16">16:00 ~ 16:50</th>
+                                    <th><input type="checkbox" name="setTime" value="17">17:00 ~ 17:50</th>
+                                  </tr>
+                                  <tr>
+                                    <th><input type="checkbox" name="setTime" value="18">18:00 ~ 18:50</th>
+                                    <th><input type="checkbox" name="setTime" value="19">19:00 ~ 19:50</th>
+                                    <th><input type="checkbox" name="setTime" value="20">20:00 ~ 20:50</th>
+                                  </tr>
+                                  <tr>
+                                    <th><input type="checkbox" name="setTime" value="21">21:00 ~ 21:50</th>
+                                    <th></th>
+                                    <th><input type="checkbox" name="setTime" value="22">22:00 ~ 22:50</th>
+                                  </tr>
+                               </table>
+                               <input type="button" id="add_cancel" value="취소"> 
+                               <input type="submit" id="submit" value="저장" onclick="set()"> 
+                           </form> 
+                        </div> 
+                    </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fa fa-fw fa-trash"></i>
+                  <span class="del_trigger">삭제</span> 
+                     <!-- 팝업 될 레이어 --> 
+                     <div class="del_modal"> 
+                        <div class="del_modal-content"> 
+                           <span class="del_close-button">&times;</span> 
+                           <h1 class="title">시간표 삭제</h1> 
+                           <form action="" method="POST" onsubmit="return del();"> 
+                              <dt>
+                                  과목명 (필수)
+                                  <input type="text" name="name" placeholder="예) 캡스톤 디자인" maxlength="20" class="put">
+                              </dt> 
+                               <label></label>
+                               <dt>시간</dt>
+                               <table>
+                                 <tr>
+                                  <th><input type="checkbox" name="delTime" value="9">09:00 ~ 09:50</th>
+                                  <th><input type="checkbox" name="delTime" value="10">10:00 ~ 10:50</th>
+                                  <th><input type="checkbox" name="delTime" value="11">11:00 ~ 11:50</th>
+                                 </tr>
+                                 <tr>
+                                    <th><input type="checkbox" name="delTime" value="12">12:00 ~ 12:50</th>
+                                    <th><input type="checkbox" name="delTime" value="13">13:00 ~ 13:50</th>
+                                    <th><input type="checkbox" name="delTime" value="14">14:00 ~ 14:50</th>
+                                  </tr>
+                                  <tr>
+                                    <th><input type="checkbox" name="delTime" value="15">15:00 ~ 15:50</th>
+                                    <th><input type="checkbox" name="delTime" value="16">16:00 ~ 16:50</th>
+                                    <th><input type="checkbox" name="delTime" value="17">17:00 ~ 17:50</th>
+                                  </tr>
+                                  <tr>
+                                    <th><input type="checkbox" name="delTime" value="18">18:00 ~ 18:50</th>
+                                    <th><input type="checkbox" name="delTime" value="19">19:00 ~ 19:50</th>
+                                    <th><input type="checkbox" name="delTime" value="20">20:00 ~ 20:50</th>
+                                  </tr>
+                                  <tr>
+                                    <th><input type="checkbox" name="delTime" value="21">21:00 ~ 21:50</th>
+                                    <th></th>
+                                    <th><input type="checkbox" name="delTime" value="22">22:00 ~ 22:50</th>
+                                  </tr>
+                               </table>
+                               <label></label> 
+                               <input type="button" id="del_cancel" value="취소"> 
+                               <input type="submit" id="delete" value="삭제"> 
+                           </form> 
+                        </div> 
+                    </div>    
+              </li>
+            </th>
+            <th></th>
+            <th>
+              <div class="timeTh">
+                  <div class="time">09:00 ~ 09:50</div>
+                  <div class="time">10:00 ~ 10:50</div>
+                  <div class="time">11:00 ~ 11:50</div>
+                  <div class="time">12:00 ~ 12:50</div>
+                  <div class="time">13:00 ~ 13:50</div>
+                  <div class="time">14:00 ~ 14:50</div>
+                  <div class="time">15:00 ~ 15:50</div>
+                  <div class="time">16:00 ~ 16:50</div>
+                  <div class="time">17:00 ~ 17:50</div>
+                  <div class="time">18:00 ~ 18:50</div>
+                  <div class="time">19:00 ~ 19:50</div>
+                  <div class="time">20:00 ~ 20:50</div>
+                  <div class="time">21:00 ~ 21:50</div>
+                  <div class="time">22:00 ~ 22:50</div>
+              </div>
+            </th>
+            <!-- $('.moday' + selectedVal ).text(''); -->
+            <td>
+              <div class="monday">
+                  <div class="dayTime monday9"> </div>
+                  <div class="dayTime monday10"> </div>
+                  <div class="dayTime monday11"> </div>
+                  <div class="dayTime monday12"> </div>
+                  <div class="dayTime monday13"> </div>
+                  <div class="dayTime monday14"> </div>
+                  <div class="dayTime monday15"> </div>
+                  <div class="dayTime monday16"> </div>
+                  <div class="dayTime monday17"> </div>
+                  <div class="dayTime monday18"> </div>
+                  <div class="dayTime monday19"> </div>
+                  <div class="dayTime monday20"> </div>
+                  <div class="dayTime monday21"> </div>
+                  <div class="dayTime monday22"> </div>
+              </div>
+            </td>
+            <td>
+                <div class="tuesday">
+                    <div class="dayTime tuesday9"> </div>
+                    <div class="dayTime tuesday10"> </div>
+                    <div class="dayTime tuesday11"> </div>
+                    <div class="dayTime tuesday12"> </div>
+                    <div class="dayTime tuesday13"> </div>
+                    <div class="dayTime tuesday14"> </div>
+                    <div class="dayTime tuesday15"> </div>
+                    <div class="dayTime tuesday16"> </div>
+                    <div class="dayTime tuesday17"> </div>
+                    <div class="dayTime tuesday18"> </div>
+                    <div class="dayTime tuesday19"> </div>
+                    <div class="dayTime tuesday20"> </div>
+                    <div class="dayTime tuesday21"> </div>
+                    <div class="dayTime tuesday22"> </div>
+                </div>
+              </td>
+              <td>
+                  <div class="wednesday">
+                    <div class="dayTime wednesday9"> </div>
+                    <div class="dayTime wednesday10"> </div>
+                    <div class="dayTime wednesday11"> </div>
+                    <div class="dayTime wednesday12"> </div>
+                    <div class="dayTime wednesday13"> </div>
+                    <div class="dayTime wednesday14"> </div>
+                    <div class="dayTime wednesday15"> </div>
+                    <div class="dayTime wednesday16"> </div>
+                    <div class="dayTime wednesday17"> </div>
+                    <div class="dayTime wednesday18"> </div>
+                    <div class="dayTime wednesday19"> </div>
+                    <div class="dayTime wednesday20"> </div>
+                    <div class="dayTime wednesday21"> </div>
+                    <div class="dayTime wednesday22"> </div>
+                  </div>
+                </td>
+                <td>
+                    <div class="thursdayt">
+                      <div class="dayTime thursday9"> </div>
+                      <div class="dayTime thursday10"> </div>
+                      <div class="dayTime thursday11"> </div>
+                      <div class="dayTime thursday12"> </div>
+                      <div class="dayTime thursday13"> </div>
+                      <div class="dayTime thursday14"> </div>
+                      <div class="dayTime thursday15"> </div>
+                      <div class="dayTime thursday16"> </div>
+                      <div class="dayTime thursday17"> </div>
+                      <div class="dayTime thursday18"> </div>
+                      <div class="dayTime thursday19"> </div>
+                      <div class="dayTime thursday20"> </div>
+                      <div class="dayTime thursday21"> </div>
+                      <div class="dayTime thursday22"> </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="friday">
+                      <div class="dayTime friday9"> </div>
+                      <div class="dayTime friday10"> </div>
+                      <div class="dayTime friday11"> </div>
+                      <div class="dayTime friday12"> </div>
+                      <div class="dayTime friday13"> </div>
+                      <div class="dayTime friday14"> </div>
+                      <div class="dayTime friday15"> </div>
+                      <div class="dayTime friday16"> </div>
+                      <div class="dayTime friday17"> </div>
+                      <div class="dayTime friday18"> </div>
+                      <div class="dayTime friday19"> </div>
+                      <div class="dayTime friday20"> </div>
+                      <div class="dayTime friday21"> </div>
+                      <div class="dayTime friday22"> </div>
+                    </div>
+                  </td>
+          </tr>
+          </tbody>
+      </table>
+  </div>
+
+    </ul>
+    
+    
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">로그아웃하시겠습니까??</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">현재 세션을 종료 할 준비가 되면 아래 "로그아웃"을 선택하세요.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+            <a class="btn btn-primary" href="views/login.html">로그아웃</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="views/vendor/jquery/jquery.min.js"></script>
+  <script src="views/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="views/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="views/js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="views/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="views/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <script src="views\js\timetable.customsubjects.js"></script>
+  <!-- Page level custom scripts -->
+  <script src="views/js/demo/datatables-demo.js"></script>
+
+  <script type="text/javascript"> 
+    var add_modal = document.querySelector(".add_modal"); 
+    var add_trigger = document.querySelector(".add_trigger"); 
+    var add_closeButton = document.querySelector(".add_close-button"); 
+    var add_cancelButton = document.querySelector("#add_cancel");
+    
+    var del_modal = document.querySelector(".del_modal"); 
+    var del_trigger = document.querySelector(".del_trigger"); 
+    var del_closeButton = document.querySelector(".del_close-button"); 
+    var del_cancelButton = document.querySelector("#del_cancel");
+
+   function add_toggleModal() { 
+        add_modal.classList.toggle("add_show-modal"); 
+    }
+
+    function del_toggleModal() { 
+        del_modal.classList.toggle("del_show-modal"); 
+    }
+
+   add_trigger.addEventListener("click", add_toggleModal); 
+   add_closeButton.addEventListener("click", add_toggleModal); 
+   add_cancel.addEventListener("click", add_toggleModal); 
+    
+   del_trigger.addEventListener("click", del_toggleModal); 
+   del_closeButton.addEventListener("click", del_toggleModal); 
+   del_cancel.addEventListener("click", del_toggleModal); 
+
+  function set(){
+      var chk_day = $("input:checkbox[name='setDay']:checked").val();
+    //   var chk_dayLang = chk_day.length;
+      var chk_time = $("input:checkbox[name='setTime']:checked").val();
+    //   var chk_timeLang = chk_time.length;
+      // var chkDay = 0;
+      // var chkTime = 0;
+      var setDay;
+
+      console.log(chk_day);
+      
+      // for(i=0;i<chk_dayLang;i++){
+      //     if(chk_day[i].checked == true){
+      //       chk += 1;
+      //       console.log(chk_day[i].value);
+      //     }
+      // }
+      // if (chk_day.equals="" ) {
+      //   console.log("선택된 정보가 없습니다");
+      //   return;
+      // } else {
+      //   console.log(chk_day);
+      // }
+
+    //   for(i=0;chk_timeLang;i++){
+    //     if(chk_time[i].checked == true){
+    //         chk += 1;
+    //         console.log(chk_time[i].value);
+    //       }
+    //   }if (chkTime == 0 ) {
+    //     console.log("선택된 정보가 없습니다");
+    //     return;
+    // }
+    // for(i=0;i<chk_timeLang;i++){
+    //     setDat[i] = chk_day[i].value + chk_time[i];
+    //     console.log(setDat[i].value);
+    // }
+  }
+</script>
+
+</body>
+
+</html>

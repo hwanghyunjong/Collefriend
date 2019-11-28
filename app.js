@@ -12,6 +12,8 @@ var mainRouter = require('./routes/main');
 var logoutRouter = require('./routes/logout');
 var profileRouter = require('./routes/profile');
 var freeboardRouter = require('./routes/board');
+var scheduleRouter = require('./routes/schedules');
+var boardReadRouter = require('./routes/boardread');
 
 var app = express();
 
@@ -39,6 +41,8 @@ app.use('/main', mainRouter);
 app.use('/logout', logoutRouter);
 app.use('/profile', profileRouter);
 app.use('/board', freeboardRouter);
+app.use('/schedules', scheduleRouter);
+app.use('/boardRead', boardReadRouter);
 
 app.use("/", express.static(path.join(__dirname,"./views")))
 
