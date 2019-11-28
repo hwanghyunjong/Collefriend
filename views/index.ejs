@@ -31,56 +31,56 @@
   <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-analytics.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
    <script>
-                          var disqus_shortname = 'collefriends';
-var disqus_identifier;
-var disqus_url;
+      var disqus_shortname = 'collefriends';
+      var disqus_identifier;
+      var disqus_url;
 
-// Loads the Disqus JS file that will create the comment form and threads.
-var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js'; // Found in disqus.js script
-$('head').append(dsq);
+      // Loads the Disqus JS file that will create the comment form and threads.
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js'; // Found in disqus.js script
+      $('head').append(dsq);
 
-// Called in each location you want to show the thread.
+      // Called in each location you want to show the thread.
 
-// Disqus searches for 'disqus-thread' elements and uses the first one it finds so to
-// overcome this, the function will clear any previous comment threads (by finding 'comments-load' elements)
-// 
-function loadDisqus(element, postTitle, postUrlTag) {
-  var identifier = postTitle;
+      // Disqus searches for 'disqus-thread' elements and uses the first one it finds so to
+      // overcome this, the function will clear any previous comment threads (by finding 'comments-load' elements)
+      // 
+      function loadDisqus(element, postTitle, postUrlTag) {
+        var identifier = postTitle;
 
-  // Including the hashbang ('/#!') is important.
-  var url = window.location.origin + '/#!' + postUrlTag;
+        // Including the hashbang ('/#!') is important.
+        var url = window.location.origin + '/#!' + postUrlTag;
 
-  var disqus_identifier = postTitle;
-  var disqus_url = url;
+        var disqus_identifier = postTitle;
+        var disqus_url = url;
 
-  if (window.DISQUS) {
-    // Horrible, but jQuery wasn't removing the div elements fully
-    $( element ).each(function() {
-      var len = this.childNodes.length;
-      for(var i = 0; i < len; i++)
-      {  
-        if (this.childNodes[i].tagName == "DIV") {
-          this.removeChild(this.childNodes[i]);
-        } 
-      }
-    });
-    console.log( $(".comments-load"+postTitle))
-    $(".comments-load"+postTitle).append('<div class="disqus-thread" id="disqus_thread"></div>');
+        if (window.DISQUS) {
+          // Horrible, but jQuery wasn't removing the div elements fully
+          $( element ).each(function() {
+            var len = this.childNodes.length;
+            for(var i = 0; i < len; i++)
+            {  
+              if (this.childNodes[i].tagName == "DIV") {
+                this.removeChild(this.childNodes[i]);
+              } 
+            }
+          });
+          console.log( $(".comments-load"+postTitle))
+          $(".comments-load"+postTitle).append('<div class="disqus-thread" id="disqus_thread"></div>');
 
-    /** if Disqus exists, call it's reset method with new parameters **/
-    console.log(identifier)
-    DISQUS.reset({
-      reload: true,
-      config: function () { 
-        //important to convert it to string
-        this.page.identifier = identifier;    
-        this.page.url = url;
-      }
-    });
-  }
-};
-</script>
+          /** if Disqus exists, call it's reset method with new parameters **/
+          console.log(identifier)
+          DISQUS.reset({
+            reload: true,
+            config: function () { 
+              //important to convert it to string
+              this.page.identifier = identifier;    
+              this.page.url = url;
+            }
+          });
+        }
+      };
+      </script>
 
   <script>
     var firebaseConfig = {
@@ -189,18 +189,6 @@ function loadDisqus(element, postTitle, postUrlTag) {
         } 
       });
     });
-
-    // function showPopup() { 
-    //     if ($('#Likey').html() == "좋아요") {
-    //       $('#Likey').html("싫어요");
-    //       count++;
-    //     } else {
-    //       $('#Likey').html("좋아요");
-    //       count--;
-    //     }
-    //     $('#justlike').text(`${count}명이 좋아합니다`);
-    //     return false;
-    // }
 
 </script>
 
@@ -599,17 +587,16 @@ function loadDisqus(element, postTitle, postUrlTag) {
                           </script>
                           <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> -->
                           
-                         
-<a class="comments-load<%=key%>" onclick="loadDisqus($(this), '<%=key%>', '<%=key%>');">
-  Show comments
-</a>
-<noscript>
-  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
-</noscript>
-                        </p>
-                        </div>
+                          <a class="comments-load<%=key%>" onclick="loadDisqus($(this), '<%=key%>', '<%=key%>');">
+                            Show comments
+                          </a>
+                          <noscript>
+                            Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+                          </noscript>
+                         </p>
+                     </div>
+                    </div>
                   </div>
-                </div>
                   <% }) %>
                     
                 
