@@ -150,6 +150,7 @@
                 window.alert("업로드 됐습니다.")
                 $("#message").val("")
                 $("#mes").val("")
+                window.location.reload()
               }
           })
           .catch(function() {
@@ -514,7 +515,7 @@
 
                                     <label for="input-file">업로드</label>
                                     <input type="file" id="input-file" class="upload-hidden">
-                                    <button type="submit" id="submit" class="btn btn-primary">게시하기</button>
+                                    <button type="button" id="submit" class="btn btn-primary">게시하기</button>
                                 </div>
                             </div>
                           <!--</form>-->

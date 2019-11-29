@@ -9,15 +9,45 @@ var app = express();
 var db = firebase.firestore();
 
 router.get('/',function(req, res, next) {
-    db.collection('freeboard').doc(req.query.brdno).get()
-        .then((doc) => {
-            var childData = doc.data();
-             
-            childData.brddate = dateFormat(childData.brddate,"yyyy-mm-dd hh:mm");
-            res.render('../views/freeboard.ejs', {
-                row: childData
-            });
-        })
+    if(!req.session.userid) {
+        res.redirect("/login")
+    } else {
+        var docUserinfo = db.collection('students').doc(`userinfo(${req.session.userid})`);
+        var doc = docUserinfo.get()
+            .then(doc => {
+                var name = doc.data().name;
+                var nickname = doc.data().nickname;
+                var department = doc.data().department;
+                var schoolname = doc.data().schoolname;
+
+                db.collection('freeboard').doc(req.query.brdno).get()
+                    .then((doc) => {
+                        var childData = doc.data();
+                        
+                        childData.brddate = dateFormat(childData.brddate,"yyyy-mm-dd hh:mm");
+                        res.render('../views/boardread.ejs', {
+                            name :  name,
+                            username : nickname,
+                            userid : req.session.userid,
+                            department : department,
+                            school : schoolname,
+                            row: childData
+                        })
+                        .catch((err) => {
+                            console.log('Error getting documents', err);
+                        });
+                    })
+                })
+                .catch(err => {
+                    console.log('Error getting documents', err)
+                })
+            }
+});
+
+router.post('/boardelete', (req, res) => {
+    db.collection('board').doc(req.query.brdno).delete()
+ 
+    res.redirect('board');
 });
 
 router.post('/', (req, res) => {
