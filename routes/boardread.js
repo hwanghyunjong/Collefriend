@@ -19,6 +19,7 @@ router.get('/',function(req, res, next) {
                 var nickname = doc.data().nickname;
                 var department = doc.data().department;
                 var schoolname = doc.data().schoolname;
+                req.session.userno=req.query.brdno;
 
                 db.collection('freeboard').doc(req.query.brdno).get()
                     .then((doc) => {
@@ -44,11 +45,11 @@ router.get('/',function(req, res, next) {
             }
 });
 
-router.post('/boardelete', (req, res) => {
-    db.collection('board').doc(req.query.brdno).delete()
+// router.get('/boardelete', (req, res) => {
+//     db.collection('freeboard').doc(req.query.brdno).delete()
  
-    res.redirect('board');
-});
+//     res.redirect('board');
+// });
 
 router.post('/', (req, res) => {
 

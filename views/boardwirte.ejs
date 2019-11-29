@@ -33,7 +33,54 @@
   <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
   
   <script>
-    
+    var firebaseConfig = {
+      apiKey: "AIzaSyBk05Mc1934883sY06pTT20l-zAe2m0InA",
+      authDomain: "collefriends.firebaseapp.com",
+      databaseURL: "https://collefriends.firebaseio.com",
+      projectId: "collefriends",
+      storageBucket: "collefriends.appspot.com",
+      messagingSenderId: "845516350469",
+      appId: "1:845516350469:web:832b984284d3549ce0e86c",
+      measurementId: "G-P5RBZT6326"
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+    var db = firebase.firestore();
+
+    function generate_random_string(string_length){
+    let random_string = '';
+    let random_ascii;
+    for(let i = 0; i < string_length; i++) {
+        random_ascii = Math.floor((Math.random() * 25) + 97);
+        random_string += String.fromCharCode(random_ascii)
+    }
+        return random_string
+    }
+
+    function add() {
+        var bodytitle = $('#title').val();
+        var bodycontent = $('#content1').val();
+        var bodybrddate = Date.now();
+        var bodybrdno = generate_random_string(8);
+        var bodyuser = '<%= name%>';
+
+        db.collection('freeboard').doc(bodybrdno).set({
+            brddate : bodybrddate,
+            brdmemo : bodycontent,
+            brdno : bodybrdno,
+            brdtitle : bodytitle,
+            brdwriter : bodyuser
+        })
+        .then(function() {
+            window.alert("업로드 됐습니다.")
+            $("#title").val("")
+            $("#content1").val("")
+        })
+        .catch(function(err) {
+            window.alert("업로드 실패!!!!!!!!!!!.")
+        })
+    }
  </script>
 </head>
 <style>
@@ -368,7 +415,7 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <form name="form1" action="boardwrite" method="post">
+        <form>
             <input type="hidden" name="pageNum" value="${pageNum}">문서번호
             <input type="hidden" name="depth" value="${article.depth}">
             <input type="hidden" name="pos" value="${article.pos}">
@@ -382,11 +429,11 @@
               </tr>
               <tr>
                 <td>제목 : </td>
-                <td><input type="text" name="title"></td>
+                <td><input type="text" name="title" id="title"></td>
               </tr>
               <tr>
                 <td colspan="2">
-                  <textarea cols="100" rows="25" name="content"></textarea>
+                  <textarea cols="100" rows="25" name="content" id="content1"></textarea>
                 </td>
               </tr>
               <tr>
@@ -394,7 +441,7 @@
                 <td><input type="file" name="fileName"></td>
               </tr>
               <tr>
-                <td><input type="submit" value="글쓰기"></td>
+                <td><input type="button" value="글쓰기" onclick="add()"></td>
                 <td><input type="reset" value="글쓰기취소"></td>
               </tr>
             </table>

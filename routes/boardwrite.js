@@ -45,25 +45,6 @@ router.get('/',function(req, res, next) {
 });
 
 router.post('/', (req, res) => {
-    var bodytitle = req.body.title || req.query.title;
-    var bodycontent = req.body.content || req.query.content;
-    var bodybrddate = Date.now();
-    var bodybrdno = generate_random_string(8);
-    var bodyuser = req.session.username;
-
-    db.collection('freeboard').doc(bodybrdno).set({
-        brddate : bodybrddate,
-        brdmemo : bodycontent,
-        brdno : bodybrdno,
-        brdtitle : bodytitle,
-        brdwriter : bodyuser
-    })
-    .then(function() {
-        console.log("추가 성공");
-    })
-    .catch(function(err) {
-        console.error("Error writing document: ", err);
-    })
 
 });
 

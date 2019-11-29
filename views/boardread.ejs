@@ -33,7 +33,32 @@
   <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
   
   <script>
-    
+    var firebaseConfig = {
+      apiKey: "AIzaSyBk05Mc1934883sY06pTT20l-zAe2m0InA",
+      authDomain: "collefriends.firebaseapp.com",
+      databaseURL: "https://collefriends.firebaseio.com",
+      projectId: "collefriends",
+      storageBucket: "collefriends.appspot.com",
+      messagingSenderId: "845516350469",
+      appId: "1:845516350469:web:832b984284d3549ce0e86c",
+      measurementId: "G-P5RBZT6326"
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+    var db = firebase.firestore();
+
+    var num = '<%=row.brdno%>';
+
+    function dele() {
+        db.collection('freeboard').doc(num).delete()
+          .then(function() {
+            window.alert("삭제")
+          })
+          .catch(function() {
+            window.alert("안됩니다 ㅠㅠ")
+          })
+    }
  </script>
 </head>
 
@@ -347,7 +372,7 @@
                 </tbody>
             </table>   
             <a href="#" onclick="history.back(-1)">List</a>
-            <a href="boardread?brdno=<%=row.brdno%>/boardDelete?brdno=<%=row.brdno%>">Delete</a>
+            <button class="btn btn-primary" type="button" value="Delete" onclick="dele()"></button>
             <a href="boardForm?brdno=<%=row.brdno%>">Modify</a>
         </body>
         </html>
