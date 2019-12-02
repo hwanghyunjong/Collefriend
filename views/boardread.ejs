@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>COL_FRIENDS - HOME</title>
+  <title>COL_FRIENDS - 게시판</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -21,7 +21,7 @@
   <link href="css/what.css" rel="stylesheet">
   <link href="css/image.css" rel="stylesheet">
   <link href="css/index.css" rel="stylesheet">
-  <link href="css/board.css" rel="stylesheet">
+  <link href="css/read.css" rel="stylesheet">
 
   <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -116,16 +116,9 @@
             <span>비밀번호 찾기</span></a>
       </li>
 
-      <!-- Nav Item - famous_restaurant -->
-      <li class="nav-item">
-        <a class="nav-link" href="famous_restaurant.html">
-          <i class="fa fa-fw fa-star"></i>
-          <span>맛집</span></a>
-      </li>
-
       <!-- Nav Item - schedule -->
       <li class="nav-item">
-        <a class="nav-link" href="schedule.html">
+        <a class="nav-link" href="/schedules">
           <i class="fa fa-fw fa-calendar"></i>
           <span>시간표</span></a>
       </li>
@@ -208,39 +201,6 @@
                 <h6 class="dropdown-header">
                   알람
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500"><%= userid%></div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">알람 전체 보기</a>
               </div>
             </li>
@@ -257,46 +217,6 @@
                 <h6 class="dropdown-header">
                   실시간채팅
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                    <div class="small text-gray-500">Emily Fowler · 58m</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-                    <div class="status-indicator"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
-                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-                    <div class="status-indicator bg-warning"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
-                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
-                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                  </div>
-                </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">메시지 전체 보기</a>
               </div>
             </li>
@@ -311,7 +231,7 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="/profile">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   개인정보
                 </a>
@@ -347,33 +267,24 @@
             </c:if>
           </div>
          
-          <div id="list">
-            <b>자유 게시판</b>
-            </div>
-            <table class="table table-striped table-bordered table-hover" border="1" style="width:600px">
-                <caption>board sample for firebase (Realtime Database)</caption>
-                <colgroup>
-                    <col width='15%' />
-                    <col width='*%' />
-                </colgroup>
+            <table class="table table-striped table-bordered table-hover" border="1" style="width:80%">
                 <tbody>
                     <tr>
-                        <td>Writer</td>
-                        <td><%=row.brdwriter%></td>
+                        <td>글쓴이</td>
+                        <td width="90%"><%=row.brdwriter%></td>
                     </tr>
                     <tr>
-                        <td>Title</td>
-                        <td><%=row.brdtitle%></td>
+                        <td>제목</td>
+                        <td width="70%"><%=row.brdtitle%></td>
                     </tr>
-                    <tr>
-                        <td>Memo</td>
-                        <td><%=row.brdmemo%></td>
+                    <tr height="400px">
+                        <td><br><br><br><br><br><br>내용</td>
+                        <td width="70%"><%=row.brdmemo%></td>
                     </tr>
                 </tbody>
             </table>   
-            <a href="#" onclick="history.back(-1)">List</a>
-            <button class="btn btn-primary" type="button" value="Delete" onclick="dele()"></button>
-            <a href="boardForm?brdno=<%=row.brdno%>">Modify</a>
+            <br><br><br>
+            <button class="btn btn-primary" type="button" value="Delete" onclick="dele()">삭제</button>
         </body>
         </html>
           </tbody>
@@ -382,16 +293,6 @@
 
       </div>
       <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Col_Firend</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
 
     </div>
     <!-- End of Content Wrapper -->

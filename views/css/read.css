@@ -1,0 +1,16 @@
+#container {
+    width: 70%;
+    height: 60%;
+    margin: auto;
+    text-align: center;
+    margin-top: 10%;
+  }
+   
+   .button{
+     margin: auto;
+   }
+
+   #container .table{
+       margin: auto;
+       text-align: center;
+   }

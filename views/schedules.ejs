@@ -2,181 +2,6 @@
 <html lang="en">
 
 <head>
-    <style type="text/css"> 
-    body{ 
-        text-align: center; 
-            display: block; 
-            margin: 0 auto; 
-            font-size: 16px; 
-            color: #999; 
-        } 
-        h1{ 
-            font-family: 'Oswald', sans-serif; 
-            font-size: 30px; 
-            color: #216182; 
-        }
-        label { 
-                display: block; 
-                margin-top: 20px; 
-                letter-spacing: 2px; 
-            } 
-        form { 
-            margin: 0 auto; 
-            width: 459px; 
-        } 
-        .put, textarea { 
-            width: 439px; 
-            height: 27px; 
-            background-color: #efefef; 
-            border-radius: 6px; 
-            border: 1px solid #dedede; 
-            padding: 10px; 
-            margin-top: 3px; 
-            font-size: 0.9em; 
-            color: #3a3a3a; 
-        } 
-        
-        textarea{ 
-            height: 60px; 
-            background-color: #efefef; 
-        } 
-        #submit{ 
-            width: 127px; 
-            height: 48px; 
-            text-align: center; 
-            border: none; 
-            margin-top: 20px; 
-            cursor: pointer; 
-        } 
-        #submit:hover{ 
-            color: #fff; 
-            background-color: #216282; 
-            opacity: 0.9; 
-        } 
-        #add_cancel { 
-            width: 127px; height: 48px; 
-            text-align: center; 
-            border: none; 
-            margin-top: 20px; 
-            cursor: pointer; 
-        } 
-        #add_cancel:hover{ 
-            color: #fff; 
-            background-color: #216282; 
-            opacity: 0.9; 
-        }
-
-        .add_modal { 
-            position: fixed; 
-            left: 0; 
-            top: 0; 
-            width: 100%; 
-            height: 100%; 
-            background-color: rgba(0, 0, 0, 0.5); 
-            opacity: 0; 
-            visibility: hidden; 
-            transform: scale(1.1); 
-            transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s; 
-        } 
-        .add_modal-content { 
-            position: absolute; 
-            top: 50%; 
-            left: 50%; 
-            transform: translate(-50%, -50%); 
-            background-color: white; 
-            padding: 1rem 1.5rem; 
-            width: 500px; 
-            height: 800px; 
-            border-radius: 0.5rem; 
-        } 
-        .add_close-button { 
-            float: right; 
-            width: 1.5rem; 
-            line-height: 1.5rem; 
-            text-align: center; 
-            cursor: pointer; 
-            border-radius: 0.25rem; 
-            background-color: lightgray; 
-        } 
-        .add_close-button:hover { 
-            background-color: darkgray; 
-        } 
-        .add_show-modal { 
-            opacity: 1; 
-            visibility: visible; 
-            transform: scale(1.0); 
-            transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s; 
-        } 
-        
-        
-        #delete{ 
-            width: 127px; 
-            height: 48px; 
-            text-align: center; 
-            border: none; 
-            margin-top: 20px; 
-            cursor: pointer; 
-        } 
-        #delete:hover{ 
-            color: #fff; 
-            background-color: #216282; 
-            opacity: 0.9; 
-        } 
-        #del_cancel { 
-            width: 127px; height: 48px; 
-            text-align: center; 
-            border: none; 
-            margin-top: 20px; 
-            cursor: pointer; 
-        } 
-        #del_cancel:hover{ 
-            color: #fff; 
-            background-color: #216282; 
-            opacity: 0.9; 
-        }
-
-        .del_modal { 
-            position: fixed; 
-            left: 0; 
-            top: 0; 
-            width: 100%; 
-            height: 100%; 
-            background-color: rgba(0, 0, 0, 0.5); 
-            opacity: 0; 
-            visibility: hidden; 
-            transform: scale(1.1); 
-            transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s; 
-        } 
-        .del_modal-content { 
-            position: absolute; 
-            top: 50%; 
-            left: 50%; 
-            transform: translate(-50%, -50%); 
-            background-color: white; 
-            padding: 1rem 1.5rem; 
-            width: 500px; 
-            height: 600px; 
-            border-radius: 0.5rem; 
-        } 
-        .del_close-button { 
-            float: right; 
-            width: 1.5rem; 
-            line-height: 1.5rem; 
-            text-align: center; 
-            cursor: pointer; 
-            border-radius: 0.25rem; 
-            background-color: lightgray; 
-        } 
-        .del_close-button:hover { 
-            background-color: darkgray; 
-        } 
-        .del_show-modal { 
-            opacity: 1; 
-            visibility: visible; 
-            transform: scale(1.0); 
-            transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s; 
-        } 
-    </style>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -199,6 +24,7 @@
   <link href="css/profile.css" rel="stylesheet">
   <link href="css/addModal.css" rel="stylesheet">
   <link href="css/table.css" rel="stylesheet">
+  <link href="css/schedules.css" rel="stylesheet">
 
   <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -265,16 +91,9 @@
             <span>비밀번호 찾기</span></a>
       </li>
 
-      <!-- Nav Item - famous_restaurant -->
-      <li class="nav-item">
-        <a class="nav-link" href="famous_restaurant.html">
-          <i class="fa fa-fw fa-star"></i>
-          <span>맛집</span></a>
-      </li>
-
       <!-- Nav Item - schedule -->
       <li class="nav-item">
-        <a class="nav-link" href="schedule.html">
+        <a class="nav-link" href="/schedules">
           <i class="fa fa-fw fa-calendar"></i>
           <span>시간표</span></a>
       </li>
@@ -357,39 +176,6 @@
                 <h6 class="dropdown-header">
                   알람
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500"><%= userid%></div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">알람 전체 보기</a>
               </div>
             </li>
@@ -406,46 +192,6 @@
                 <h6 class="dropdown-header">
                   실시간채팅
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                    <div class="small text-gray-500">Emily Fowler · 58m</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-                    <div class="status-indicator"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
-                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-                    <div class="status-indicator bg-warning"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
-                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
-                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                  </div>
-                </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">메시지 전체 보기</a>
               </div>
             </li>
@@ -460,7 +206,7 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="/profile">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   개인정보
                 </a>
@@ -568,7 +314,6 @@
                                          </table>
                                          <input type="button" id="add_cancel" value="취소"> 
                                          <input type="button" id="submit" value="저장" onclick="set()"> 
-                                         <input type="button" id="views1" value="켜기" onclick="views()">
                                      </form> 
                                   </div> 
                               </div>
@@ -583,10 +328,16 @@
                                      <span class="del_close-button">&times;</span> 
                                      <h1 class="title">시간표 삭제</h1> 
                                      <form action="" method="POST" onsubmit="return del();"> 
-                                        <dt>
-                                            과목명 (필수)
-                                            <input type="text" name="name" placeholder="예) 캡스톤 디자인" maxlength="20" class="put">
-                                        </dt> 
+                                      <dt>요일</dt>
+                                      <table>
+                                        <tr id=checkk>
+                                         <th><input type="checkbox" name="setDay" value="monday">월요일</th>
+                                         <th><input type="checkbox" name="setDay" value="tuesday">화요일</th>
+                                         <th><input type="checkbox" name="setDay" value="wednesday">수요일</th>
+                                         <th><input type="checkbox" name="setDay" value="thursday">목요일</th>
+                                         <th><input type="checkbox" name="setDay" value="friday">금요일</th>
+                                       </tr>                
+                                      </table> 
                                          <label></label>
                                          <dt>시간</dt>
                                          <table>
@@ -646,7 +397,7 @@
                       <!-- $('.moday' + selectedVal ).text(''); -->
                       <td>
                         <div class="monday">
-                            <div class="dayTime monday9">캡스톤디자인 803호</div>
+                            <div class="dayTime monday9">캡스톤디자인<br>정필성교수님<br>공학관805호 </div>
                             <div class="dayTime monday10"> </div>
                             <div class="dayTime monday11"> </div>
                             <div class="dayTime monday12"> </div>
@@ -744,16 +495,6 @@
 
       </div>
       <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Col_Firend</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
 
     </div>
     <!-- End of Content Wrapper -->

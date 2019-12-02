@@ -23,24 +23,27 @@ table.type09 thead .day{
     border-bottom: 3px solid #036;
 }
 table.type09 thead .noday{
-    padding: 40px;
+    padding: 30px;
     vertical-align: top;
     border-bottom: none;
 }
 table.type09 tbody .time{
-    width: 150px;
-    height: 70px;
+    width: 180px;
+    height: 100px;
     text-align: center;
     font-weight: bold;
+    line-height: 30px;
     vertical-align: top;
     border: 0.5px solid #036;
     border-bottom: 1px solid #ccc;
     background: #f3f6f7;
 }
 table.type09 tbody .dayTime {
-    width: 150px;
-    height: 70px;
+    width: 180px;
+    height: 100px;
     font-weight: bold;
+    font-size: 12px;
+    line-height: 30px;
     vertical-align: top;
     border: 0.5px solid #036;
     border-bottom: 1px solid #ccc;
