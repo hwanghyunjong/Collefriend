@@ -136,7 +136,7 @@
           session:username
         }).
         then((result)=>{
-          db.collection(`board(${username})`).doc().set({
+          db.collection(`board`).doc().set({
             Date:date,
             boardtitle: title1,
             boardmessage: message,
@@ -468,11 +468,11 @@
                       <div class="d-flex justify-content-between align-items-center">
                           <div class="d-flex justify-content-between align-items-center">
                               <div class="mr-2">
-                                  <img class="rounded-circle" width="45" src="https://cdn.lolalytics.com/image/generated/probuilds/players280px/deft.png" alt="">
+                                  <img class="rounded-circle" width="45" src="https://support.c2cschools.com/s/cache/97/b3/97b3f264d2eea1f1540210b25ecde491.png" alt="">
                               </div>
                               <div class="ml-2">
-                                  <div class="h5 m-0"><%= username%></div>
-                                  <div class="h7 text-muted"><%= name%></div>
+                                  <div class="h5 m-0"><%= board.nickname%></div>
+                                  <div class="h7 text-muted"><%= board.name%></div>
                               </div>
                           </div>
                       </div>

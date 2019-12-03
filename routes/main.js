@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
         res.redirect("/login")
     } else {
         //var docUserinfo = db.collection('students').doc(`userinfo(${req.session.userid})`);
-        var docBoardinfo = db.collection(`board(${req.session.username})`);
+        var docBoardinfo = db.collection(`board`);
         var docUserinfo = db.collection('student').doc(`userinfo(${req.session.userid})`);
         var doc = docBoardinfo.get()
             .then(doc => {
@@ -24,7 +24,9 @@ router.get('/', (req, res) => {
                         boardtitle : data.boardtitle,
                         boardmes : data.boardmessage,
                         imgurl : data.imgUrl,
-                        Likey : data.Likey
+                        Likey : data.Likey,
+                        name : data.name,
+                        nickname : data.nickname
                     })
                 })
 
