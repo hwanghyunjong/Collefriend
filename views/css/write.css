@@ -1,13 +1,14 @@
 #container {
     width: 70%;
     height: 60%;
-    margin: auto;
+    margin: 0 auto 0 auto;
     text-align: center;
     margin-top: 10%;
   }
 
    #container .table{
-       margin: auto;
+       table-layout: fixed;
+       margin: 0 auto;
        text-align: center;
    }
 
